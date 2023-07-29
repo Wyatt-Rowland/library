@@ -8,9 +8,10 @@ if (storedLibrary === null) {
     myLibrary = parsedLibrary.map(book => Object.assign(new Book(), book));
 }
 
-function Book(title, author, page, read) {
+function Book(title, author, pic, page, read) {
     this.title = title;
     this.author = author;
+    this.pic = pic;
     this.page = page;
     this.read = read;
 }
@@ -35,6 +36,7 @@ function render(){
         bookEl.classList.add('bookContainer')
         bookEl.innerHTML = `
         <h1 class="bookName input">${book.title}</h1>
+        <img class="bookImg" src="${book.pic}" alt="Book Image" onerror="this.onerror=null; this.src='download.jfif';">
         <h2 class="bookAuthor input">${book.author}</h2>
         <p class="pageCount input">${book.page}</p>
         <p class="read input">${book.read ? "Read": "Not Read Yet"}</p>
@@ -54,10 +56,16 @@ function removeBook(index) {
 function addBookToLibrary() {
     let title = document.querySelector('.getTitle').value;
     let author = document.querySelector('.getAuthor').value;
+    let pic = document.querySelector('.getPic').value;
     let page = document.querySelector('.getCount').value;
     let read = document.querySelector('.getStatus').checked;
-    let newBook = new Book(title, author, page, read);
-    console.log(newBook);
+    
+    if (!pic || pic.trim() === '' || pic === undefined) {
+        pic = "download.jfif";
+    }
+
+    let newBook = new Book(title, author, pic, page, read);
+    console.log(newBook.pic);
     myLibrary.push(newBook);
     render();
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
