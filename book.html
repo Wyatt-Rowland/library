@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Library</title>
+    <link rel="stylesheet" href="book.css">
+</head>
+<body>        
+    <div id="main">
+        <button id="newBookBtn" type="submit">New Book</button>
+        <form style="display: none;" id="newBookForm">
+            <input class="getTitle bookInput" type="text" placeholder="Title">
+            <input class="getAuthor bookInput" type="text" placeholder="Author">
+            <input class="getCount bookInput" type="text" placeholder="Page Count">
+            <div class="checkbox-container">               
+                <label class="checkbox-label" for="getStatus">Read:</label>
+               <input class="getStatus" type="checkbox">
+            </div>
+            <div id="addBookBtn"><input type="submit" id="addBook" value="Add Book"></div>
+        </form>
+    </div>
+
+    <div class="library">
+    </div>    
+    <script src="book.js"></script>
+
+</body>
+</html>
