@@ -34,14 +34,19 @@ function render(){
         let book = myLibrary[i];
         let bookEl = document.createElement('div')
         bookEl.classList.add('bookContainer')
+        if(book.read) {
+            bookEl.classList.add('read');
+        } else {
+            bookEl.classList.add('notRead')
+        }
         bookEl.innerHTML = `
-        <h1 class="bookName input">${book.title}</h1>
+        <h1 id="bookName" class="bookName input ${book.read ? "read" : "notRead"}">${book.title}</h1>
         <img class="bookImg" src="${book.pic}" alt="Book Image" onerror="this.onerror=null; this.src='download.jfif';">
         <h2 class="bookAuthor input">${book.author}</h2>
         <p class="pageCount input">${book.page}</p>
         <p class="read input">${book.read ? "Read": "Not Read Yet"}</p>
-        <button class="toggleBtn" onclick="toggleRead(${i})">Toggle</button>
-        <button class="removeBtn" onclick="removeBook(${i})">Remove</button>
+        <button class="toggleBtn ${book.read ? "read" : "notRead"}" onclick="toggleRead(${i})">Change read status</button>
+        <button class="removeBtn ${book.read ? "read" : "notRead"}" onclick="removeBook(${i})">Remove</button>
         `
         libraryEl.appendChild(bookEl);
     }
