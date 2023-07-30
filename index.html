@@ -8,7 +8,15 @@
 </head>
 <body>        
     <div id="main">
-        <button id="newBookBtn" type="submit">New Book</button>
+            <button id="newBookBtn" type="submit">New Book</button>  
+            <div id="themeContainer">
+                <select id="selectMenu">
+                    <option disabled selected value="theme">Theme</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                    <option value="colorful">Colorful</option>
+                </select>
+            </div>
         <form style="display: none;" id="newBookForm">
             <input class="getTitle bookInput" type="text" placeholder="Title">
             <input class="getAuthor bookInput" type="text" placeholder="Author">

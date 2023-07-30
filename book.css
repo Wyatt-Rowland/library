@@ -1,3 +1,10 @@
+:root {
+    --main-color: rgb(42, 42, 42);
+    --main-gradient: rgb(42, 42, 42), lightblue;
+    --secondary-color: lightblue;    
+    --secondary-gradient: lightblue, rgb(42, 42, 42);
+    --form-color: white;
+}
 html {
     overflow-y: scroll;
 }
@@ -7,8 +14,25 @@ body {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    background-color: rgb(42, 42, 42);
+    background-color: var(--main-color);
     color: lightblue;
+}
+#themeContainer {
+    position: absolute;
+    top: 30px;
+    right: 0;
+}
+#selectMenu {
+  width: 100px;
+  height: 30px;
+  padding: 5px 5px;
+  margin-right: 20px;
+  align-self: center;
+  border-radius: 5px;
+  border: 1px solid var(--secondary-color);
+  background-color: var(--main-color);
+  color: var(--secondary-color);
+  font-size: 16px;
 }
 #main {
     display: flex;
@@ -31,11 +55,13 @@ body {
 #newBookBtn,
 #addBook {
     margin: 30px auto 30px auto;    
-    background-color: lightblue;
+    background-color: var(--secondary-color);
+    color: var(--main-color);
 }
 
 #addBook {
     margin: 0;
+    box-shadow: 5px 5px 10px 0px var(--main-color);
 }
 #newBookForm {
     display: flex;
@@ -47,8 +73,7 @@ body {
     max-width: 300px;
     width: 20vw;
     border-radius: 20px;
-    border: 1px solid blue;
-    background-color: white;
+    background-color: var(--form-color);
 }
 #addBookBtn {
     display: flex;
@@ -56,12 +81,12 @@ body {
     margin: 30px;
 }
 .bookInput::placeholder {
-    color: lightblue;
+    color: var(--secondary-color);
 }
 .bookInput {
     display: block;
-    background-color: rgb(55, 57, 59);
-    color: lightblue;
+    background-color: var(--main-color);
+    color: var(--secondary-color);
     font-size: 16px;
     padding: 10px 20px 10px 20px;
     border-radius: 20px;
@@ -72,30 +97,30 @@ body {
 }
 .library {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(18vw, 1fr));
     gap: 20px;
     padding: 20px;
 }
 .bookContainer {
-    border: 1px solid rgb(251, 206, 206);
+    border: 1px solid var(--secondary-color);
     text-align: center;
     display: flex;
     flex-direction: column;
     height: 600px;
     justify-content: space-between;
     border-radius: 20px;
-    background: linear-gradient(to bottom, rgb(42, 42, 42), lightblue);
-    color: rgb(42, 42, 42);
+    background: linear-gradient(to bottom, var(--main-gradient));
+    color: var(--main-color);
 }
 .bookContainer.notRead {
-    background: linear-gradient(to top, rgb(42, 42, 42), lightblue);
-    color: lightblue;
+    background: linear-gradient(to top, var(--main-gradient));
+    color: var(--secondary-color);
 }
 #bookName.read {
-    color: lightblue;
+    color: var(--secondary-color);
 }
 .bookName.notRead {
-    color: rgb(42, 42, 42);
+    color: var(--main-color);
 }
 .bookImg {
     width: 15vw;
@@ -104,19 +129,19 @@ body {
     object-position: center;
     align-self: center;
     border-radius: 20px;
-    border: 1px solid rgb(42, 42, 42);
+    border: 1px solid var(--main-color);
 }
 .toggleBtn,
 .removeBtn {
     align-self: center;
     margin-bottom: 10px;
-    background-color: rgb(42, 42, 42);
-    color: lightblue;
+    background-color: var(--main-color);
+    color: var(--secondary-color);
 }
 .toggleBtn.notRead,
 .removeBtn.notRead {
-    background-color: lightblue;
-    color: rgb(42, 42, 42);
+    background-color: var(--secondary-color);
+    color: var(--main-color);
 }
 .bookName {
     font-size: 24px;
@@ -129,7 +154,7 @@ body {
     margin-right: 5px;
 }
 .checkbox-label {    
-    color: rgb(42, 42, 42);
+    color: var(--main-color);
 }
 .checkbox-container {
     display: flex;

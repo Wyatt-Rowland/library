@@ -52,6 +52,32 @@ function render(){
     }
 };
 
+let theme = document.querySelector('#selectMenu');
+
+theme.addEventListener('change', function(){
+    let selectedTheme = theme.value;
+
+    if (selectedTheme === 'dark') {
+        document.documentElement.style.setProperty('--main-color', 'rgb(42, 42, 42)');
+        document.documentElement.style.setProperty('--secondary-color', 'lightblue');
+        document.documentElement.style.setProperty('--main-gradient', 'rgb(42, 42, 42), lightblue');
+        document.documentElement.style.setProperty('--secondary-gradient', 'lightblue, rgb(42, 42, 42)');
+        document.documentElement.style.setProperty('--form-color', 'white');
+    } else if (selectedTheme === 'light') {
+        document.documentElement.style.setProperty('--main-color', 'lightblue');
+        document.documentElement.style.setProperty('--secondary-color', 'rgb(42, 42, 42)');
+        document.documentElement.style.setProperty('--secondary-gradient', 'rgb(42, 42, 42), lightblue');
+        document.documentElement.style.setProperty('--main-gradient', 'lightblue, rgb(42, 42, 42)');
+        document.documentElement.style.setProperty('--form-color', 'grey');
+    } else if (selectedTheme === 'colorful') {
+        document.documentElement.style.setProperty('--main-color', 'black');
+        document.documentElement.style.setProperty('--secondary-color', 'red');
+        document.documentElement.style.setProperty('--secondary-gradient', 'blue, orange');
+        document.documentElement.style.setProperty('--main-gradient', 'orange, blue');
+        document.documentElement.style.setProperty('--form-color', 'blue');
+    }
+});
+
 function removeBook(index) {
     myLibrary.splice(index, 1);
     render();
