@@ -27,11 +27,26 @@ function toggleRead(index) {
 
 }
 
-function render(){
+function handleSearch() {
+    const searchQuery = document.querySelector('.search').value.trim().toLowerCase();
+
+  
+
+    const filteredBooks = myLibrary.filter(book =>
+        book.title.toLowerCase().includes(searchQuery) ||
+        book.author.toLowerCase().includes(searchQuery)
+        );
+
+    render(filteredBooks);
+}  
+const searchInput = document.querySelector('.search');
+searchInput.addEventListener('input', handleSearch);
+
+function render(books = myLibrary){
     let libraryEl = document.querySelector(".library");
     libraryEl.innerHTML = "";
-    for (let i = 0; i < myLibrary.length; i++) {
-        let book = myLibrary[i];
+    for (let i = 0; i < books.length; i++) {
+        let book = books[i];
         let bookEl = document.createElement('div')
         bookEl.classList.add('bookContainer')
         if(book.read) {
@@ -112,5 +127,8 @@ document.querySelector('#newBookForm').addEventListener('submit', function(){
     event.preventDefault();
     addBookToLibrary();
 })
+
+document.querySelector('.search').addEventListener('input', handleSearch);
+
 
 render();

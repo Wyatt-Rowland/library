@@ -54,14 +54,15 @@ body {
 }
 #newBookBtn,
 #addBook {
-    margin: 30px auto 30px auto;    
     background-color: var(--secondary-color);
     color: var(--main-color);
+    margin: 30px auto 15px auto;
 }
 
 #addBook {
     margin: 0;
-    box-shadow: 5px 5px 10px 0px var(--main-color);
+    box-shadow: 5px 5px 10px 0px var(--main-color);    
+    margin: 30px auto 30px auto;    
 }
 #newBookForm {
     display: flex;
@@ -69,6 +70,7 @@ body {
     align-items: center;
     justify-content: center;
     margin: auto;
+    margin-top: 15px;
     min-width: 150px;
     max-width: 300px;
     width: 20vw;
@@ -162,4 +164,31 @@ body {
     justify-content: center;
     margin: 30px;
     gap: 10px;
+}
+.searchContainer {
+    display: flex;
+    width: 80%;
+    height: auto;
+    background-color: grey;
+    border: 1px solid white;
+    border-radius: 25px;
+    justify-content: space-between;
+    margin-top: 30px;
+    align-self: center;
+}
+.search,
+.search:focus,
+.sort {
+    margin: 20px 30px 20px 30px;
+    height: 30px;
+    border-radius: 25px;
+    min-width: 100px;
+    max-width: 200px;
+    width: 10vw;
+    box-shadow: 5px 5px 10px 0px var(--main-color);   
+    padding-left: 8px; 
+    text-indent: 8px;
+}
+.sort {
+    padding-left: 8px;
 }
