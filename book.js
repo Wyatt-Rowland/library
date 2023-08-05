@@ -5,7 +5,11 @@ if (storedLibrary === null) {
     myLibrary = [];
 } else {
     let parsedLibrary = JSON.parse(storedLibrary);
-    myLibrary = parsedLibrary.map(book => Object.assign(new Book(), book));
+    myLibrary = parsedLibrary.map(book => {
+        let newBook = Object.assign(new Book(), book);
+        newBook.dateAdded = new Date(book.dateAdded);
+        return newBook;
+    });
 }
 
 function Book(title, author, pic, page, read) {
@@ -14,6 +18,7 @@ function Book(title, author, pic, page, read) {
     this.pic = pic;
     this.page = page;
     this.read = read;
+    this.dateAdded = new Date();
 }
 
 Book.prototype.toggleRead = function(){
@@ -30,8 +35,6 @@ function toggleRead(index) {
 function handleSearch() {
     const searchQuery = document.querySelector('.search').value.trim().toLowerCase();
 
-  
-
     const filteredBooks = myLibrary.filter(book =>
         book.title.toLowerCase().includes(searchQuery) ||
         book.author.toLowerCase().includes(searchQuery)
@@ -41,6 +44,52 @@ function handleSearch() {
 }  
 const searchInput = document.querySelector('.search');
 searchInput.addEventListener('input', handleSearch);
+
+const sortDrop = document.querySelector('.sort');
+sortDrop.addEventListener('change', sortBooks);
+
+function sortBooks() {
+    const sortType = document.querySelector('.sort').value;
+    switch (sortType) {
+        case 'oldest':
+            myLibrary.sort((a, b) => a.dateAdded - b.dateAdded);
+            break;
+        case 'newest':
+            myLibrary.sort((a, b) => b.dateAdded - a.dateAdded);
+            break;
+        case 'alphaTitle':
+            myLibrary.sort(function (a, b) {
+                if (a.title < b.title) {
+                    return -1;
+                }
+                if (a.title > b.title) {
+                    return 1;
+                }
+                return 0;
+            });
+        case 'alphaAuthor':
+            myLibrary.sort(function (a, b) {
+                if (a.author < b.author) {
+                    return -1;
+                }
+                if (a.author > b.author) {
+                    return 1;
+                }
+                return 0;
+            });
+        case 'length':
+            myLibrary.sort(function (a, b) {
+                if (a.page > b.page) {
+                    return 1;
+                }
+                if (a.page < b.page) {
+                    return -1;
+                }
+                return 0;
+            })
+    }
+    render();
+}
 
 function render(books = myLibrary){
     let libraryEl = document.querySelector(".library");
@@ -115,6 +164,8 @@ function addBookToLibrary() {
     myLibrary.push(newBook);
     render();
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+
+    sortBooks();
 }
 
 let newBookBtn = document.querySelector('#newBookBtn');
