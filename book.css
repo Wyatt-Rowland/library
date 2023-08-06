@@ -53,6 +53,16 @@ body {
     border-radius: 20px;
     border: none;
 }
+
+#newBookBtn:hover,
+#addBook:hover{
+    background-color: var(--secondary-color);
+}
+.toggleBtn:hover,
+.removeBtn:hover {
+    background-color: ;
+}
+
 #newBookBtn,
 #addBook {
     background-color: var(--secondary-color);

@@ -66,6 +66,7 @@ function sortBooks() {
                 }
                 return 0;
             });
+            break;
         case 'alphaAuthor':
             myLibrary.sort(function (a, b) {
                 if (a.author < b.author) {
@@ -76,6 +77,7 @@ function sortBooks() {
                 }
                 return 0;
             });
+            break;
         case 'length':
             myLibrary.sort(function (a, b) {
                 if (a.page > b.page) {
