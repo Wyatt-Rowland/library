@@ -17,12 +17,37 @@ body {
     background-color: var(--main-color);
     color: lightblue;
 }
-#themeContainer {
+#theme-container {
     position: absolute;
     top: 30px;
     right: 0;
 }
-#selectMenu {
+
+#new-book-form {
+    position: absolute;
+    top: 100%;
+    opacity: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 15px;
+    min-width: 150px;
+    max-width: 300px;
+    width: 20vw;
+    border-radius: 20px;
+    border: 8px double black;
+    background-color: var(--form-color);
+    transition: transform 0.5s ease-in-out;
+    transform: scale(0.01); 
+    opacity: 0; 
+}
+#new-book-form.active {
+    transform: scale(1); 
+    opacity: 1;
+}
+
+#select-menu {
   width: 100px;
   height: 30px;
   padding: 5px 5px;
@@ -35,16 +60,17 @@ body {
   font-size: 16px;
 }
 #main {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-#newBookBtn,
-#addBook,
-.toggleBtn,
-.removeBtn
+#new-book-btn,
+#add-book,
+.toggle-btn,
+.remove-btn
 {
     min-width: 100px;
     max-width: 200px;
@@ -52,52 +78,38 @@ body {
     height: 30px;
     border-radius: 20px;
     border: none;
+    transition: filter 0.3s ease;
 }
 
-#newBookBtn:hover,
-#addBook:hover{
-    background-color: var(--secondary-color);
-}
-.toggleBtn:hover,
-.removeBtn:hover {
-    background-color: ;
+#new-book-btn:hover,
+#add-book:hover, 
+.toggle-btn:hover,
+.remove-btn:hover {
+    filter: brightness(0.8);
 }
 
-#newBookBtn,
-#addBook {
+#new-book-btn,
+#add-book {
     background-color: var(--secondary-color);
     color: var(--main-color);
     margin: 30px auto 15px auto;
 }
 
-#addBook {
+#add-book {
     margin: 0;
     box-shadow: 5px 5px 10px 0px var(--main-color);    
     margin: 30px auto 30px auto;    
 }
-#newBookForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    margin-top: 15px;
-    min-width: 150px;
-    max-width: 300px;
-    width: 20vw;
-    transition: all 20s ease;
-    border-radius: 20px;
-    background-color: var(--form-color);
-}
-#addBookBtn {
+
+#add-book-btn {
     display: flex;
     justify-content: center;
     margin: 30px;
 }
-.bookInput::placeholder {
+.book-input::placeholder {
     color: var(--secondary-color);
 }
-.bookInput {
+.book-input {
     display: block;
     background-color: var(--main-color);
     color: var(--secondary-color);
@@ -115,7 +127,7 @@ body {
     gap: 20px;
     padding: 20px;
 }
-.bookContainer {
+.book-container {
     border: 1px solid var(--secondary-color);
     text-align: center;
     display: flex;
@@ -126,17 +138,17 @@ body {
     background: linear-gradient(to bottom, var(--main-gradient));
     color: var(--main-color);
 }
-.bookContainer.notRead {
+.book-container.not-read {
     background: linear-gradient(to top, var(--main-gradient));
     color: var(--secondary-color);
 }
-#bookName.read {
+#book-name.read {
     color: var(--secondary-color);
 }
-.bookName.notRead {
+.book-name.not-read {
     color: var(--main-color);
 }
-.bookImg {
+.book-img {
     width: 15vw;
     height: 275px;
     object-fit: cover;
@@ -145,23 +157,23 @@ body {
     border-radius: 20px;
     border: 1px solid var(--main-color);
 }
-.toggleBtn,
-.removeBtn {
+.toggle-btn,
+.remove-btn {
     align-self: center;
     margin-bottom: 10px;
     background-color: var(--main-color);
     color: var(--secondary-color);
 }
-.toggleBtn.notRead,
-.removeBtn.notRead {
+.toggle-btn.not-read,
+.remove-btn.not-read {
     background-color: var(--secondary-color);
     color: var(--main-color);
 }
-.bookName {
+.book-name {
     font-size: 24px;
     margin-bottom: none;
 }
-.getStatus {
+.get-status {
     -webkit-transform: scale(1.5);  /* for Chrome, Safari, Opera */
     -moz-transform: scale(1.5);  /* for Firefox */
     transform: scale(1.5);
@@ -177,7 +189,7 @@ body {
     margin: 30px;
     gap: 10px;
 }
-.searchContainer {
+.search-container {
     display: flex;
     width: 80%;
     height: auto;

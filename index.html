@@ -8,40 +8,39 @@
 </head>
 <body>        
     <div id="main">
-            <button id="newBookBtn" type="submit">New Book</button>
-            <div id="themeContainer">
-                <select id="selectMenu">
-                    <option disabled selected value="theme">Theme</option>
-                    <option value="dark">Dark</option>
-                    <option value="light">Light</option>
-                    <option value="colorful">Colorful</option>
-                </select>
-            </div>
-        <form style="display: none;" id="newBookForm">
-            <input class="getTitle bookInput" type="text" placeholder="Title">
-            <input class="getAuthor bookInput" type="text" placeholder="Author">
-            <input class="getPic bookInput" type="text" placeholder="Image URL (Not Required)">
-            <input class="getCount bookInput" type="text" placeholder="Page Count">
+        <button id="new-book-btn" type="submit">New Book</button>
+        <div id="theme-container">
+            <select id="select-menu">
+                <option disabled selected value="theme">Theme</option>
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+                <option value="colorful">Colorful</option>
+            </select>
+        </div>
+        <form id="new-book-form">
+            <input class="get-title book-input" type="text" placeholder="Title">
+            <input class="get-author book-input" type="text" placeholder="Author">
+            <input class="get-pic book-input" type="text" placeholder="Image URL (Not Required)">
+            <input class="get-count book-input" type="text" placeholder="Page Count">
             <div class="checkbox-container">               
-                <label class="checkbox-label" for="getStatus">Read:</label>
-               <input class="getStatus" type="checkbox">
+                <label class="checkbox-label" for="get-status">Read:</label>
+               <input class="get-status" type="checkbox">
             </div>
-            <div id="addBookBtn"><input type="submit" id="addBook" value="Add Book"></div>
+            <div id="add-book-btn"><input type="submit" id="add-book" value="Add Book"></div>
         </form>
     </div>
-    <div class="searchContainer">
+    <div class="search-container">
         <input class="search" type="text" placeholder="Search">
         <select class="sort">
             <option selected value="oldest">Date Added Oldest</option>
             <option value="newest">Date Added Newest</option>
-            <option value="alphaTitle">Alphabetical (title)</option>
-            <option value="alphaAuthor">Alphabetical (author)</option>
+            <option value="alpha-title">Alphabetical (title)</option>
+            <option value="alpha-author">Alphabetical (author)</option>
             <option value="length">Book Length</option>
         </select>
     </div>
     <div class="library">
     </div>    
     <script src="book.js"></script>
-
 </body>
 </html>
