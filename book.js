@@ -103,6 +103,10 @@ function sortBooks() {
 }
 
 // Function to render the library books
+
+
+
+
 function render(books = myLibrary){
     let libraryEl = document.querySelector(".library");
     libraryEl.innerHTML = "";
@@ -127,6 +131,9 @@ function render(books = myLibrary){
         libraryEl.appendChild(bookEl);
     }
 };
+
+
+
 
 // Function to show the form
 function showForm() {

@@ -142,7 +142,7 @@ body {
     background: linear-gradient(to top, var(--main-gradient));
     color: var(--secondary-color);
 }
-#book-name.read {
+.book-name.read {
     color: var(--secondary-color);
 }
 .book-name.not-read {

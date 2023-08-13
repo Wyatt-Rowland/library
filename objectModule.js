@@ -79,7 +79,7 @@ const toggleModule = (function() {
     function toggleRead(index) {
         let book = libraryModule.getLibrary()[index];
         book.toggleRead();
-        renderModule.render();
+        renderObject.render();
         localStorage.setItem('library', JSON.stringify(libraryModule.getLibrary())); 
     }
     return {
@@ -97,7 +97,7 @@ function handleSearch() {
         book.author.toLowerCase().includes(searchQuery)
     );
 
-    renderModule.render(filteredBooks);
+    renderObject.render(filteredBooks);
 }
 
 // Add event listener to the search input
@@ -150,7 +150,7 @@ const sortModule = (function() {
                 });
                 break;
         }
-        renderModule.render();
+        renderObject.render();
     }
     return {
         sortBooks: sortBooks
@@ -173,33 +173,66 @@ document.querySelector(".library").addEventListener('click', function(event) {
 // Function to render the library books
 
 
-
-const renderModule = {
-    render: function(books = libraryModule.getLibrary()){
-        let libraryEl = document.querySelector(".library");
-        libraryEl.innerHTML = "";
-        for (let i = 0; i < books.length; i++) {
-            let book = books[i];
-            let bookEl = document.createElement('div')
-            bookEl.classList.add('book-container')
-            if(book.read) {
-                bookEl.classList.add('read');
+const createModule = (function () {
+    function createElement(tag, attribute = {}, children = []) {
+        const element = document.createElement(tag);
+        for (let key in attribute) {
+            if (key === "textContent") {
+                element.textContent = attribute[key];
             } else {
-                bookEl.classList.add('not-read')
+                element.setAttribute(key, attribute[key]);
             }
-            bookEl.innerHTML = `
-            <h1 id="book-name" class="book-name input ${book.read ? "read" : "not-read"}">${book.title}</h1>
-            <img class="book-img" src="${book.pic}" alt="Book Image" onerror="this.onerror=null; this.src='download.jfif';">
-            <h2 class="book-author input">${book.author}</h2>
-            <p class="page-count input">${book.page}</p>
-            <p class="read input">${book.read ? "Read": "Not Read Yet"}</p>
-            <button class="toggle-btn" data-index="${i}">Change read status</button>
-            <button class="remove-btn" data-index="${i}">Remove</button>
-            `
-            libraryEl.appendChild(bookEl);
         }
+        children.forEach(child => {
+            if (typeof child === 'string') {
+                element.appendChild(document.createTextNode(child));
+            } else {
+                element.appendChild(child);
+            }
+        });
+        return element;
+    }
+    return {
+        createElement: createElement
+    }
+})();
+    
+const renderObject = {
+    render: function(books = libraryModule.getLibrary()) {
+        let libraryEl = document.querySelector(".library");
+        
+        // Clear the libraryEl first
+        while (libraryEl.firstChild) {
+            libraryEl.removeChild(libraryEl.firstChild);
+        }
+
+        books.forEach((book, i) => {
+            const bookEl = createModule.createElement('div', {
+                class: `book-container ${book.read ? 'read' : 'not-read'}`
+            }, [
+                createModule.createElement('h1', {
+                    class: `book-name input ${book.read ? "read" : "not-read"}`,
+                    textContent: book.title
+                }),
+                createModule.createElement('img', {
+                    class: 'book-img',
+                    src: book.pic,
+                    alt: 'Book Image',
+                    onerror: "this.src='download.jfif';"
+                }),
+                createModule.createElement('h2', { class: 'book-author input', textContent: book.author }),
+                createModule.createElement('p', { class: 'page-count input', textContent: book.page }),
+                createModule.createElement('p', { class: 'read input', textContent: book.read ? "Read" : "Not Read Yet" }),
+                createModule.createElement('button', { class: 'toggle-btn', 'data-index': i, textContent: 'Change read status' }),
+                createModule.createElement('button', { class: 'remove-btn', 'data-index': i, textContent: 'Remove' })
+            ]);
+
+            libraryEl.appendChild(bookEl);
+        });
     }
 };
+
+
 
 
 
@@ -260,7 +293,7 @@ const formControl = {
 const removeModule = (function() {
     function removeBook(index) {
         libraryModule.removeBookAt(index);
-        renderModule.render();
+        renderObject.render();
         localStorage.setItem('library', JSON.stringify(libraryModule.getLibrary())); 
     }
     return {
@@ -286,7 +319,7 @@ const addBook = (function() {
 
         let newBook = new bookModule.Book(title, author, pic, page, read);
         libraryModule.addBook(newBook)
-        renderModule.render();
+        renderObject.render();
 
         sortModule.sortBooks();
         formControl.clearForm();
@@ -312,4 +345,4 @@ domElements.inputInfo.addEventListener('submit', function(e){
 
 domElements.searchInput.addEventListener('input', handleSearch);
 
-renderModule.render();
+renderObject.render();
