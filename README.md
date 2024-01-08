@@ -2,6 +2,8 @@
 
 ----This is a simple library made for the Odin Project. I tried to do as much as possible to further expand my understanding of JS, HTML, and CSS. 
 
+      You can view the page live at: https://vaccinaldig3710.github.io/library/
+
       Despite the library functioning well, there's a few issues I want to address at some point. 
 
 
@@ -33,4 +35,7 @@
 
 
             The site needs to be a little more responsive, and I need to use more em, rem, %, vw, vh, and media queries. 
+
+
+            Also, I am way to specific on my css selectors. 
             
