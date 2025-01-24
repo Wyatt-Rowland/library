@@ -2,7 +2,7 @@
 
 ----This is a simple library made for the Odin Project. I tried to do as much as possible to further expand my understanding of JS, HTML, and CSS. 
 
-      You can view the page live at: https://vaccinaldig3710.github.io/library/
+      You can view the page live at: https://Wyatt-Rowland.github.io/library/
 
       Despite the library functioning well, there's a few issues I want to address at some point. 
 
